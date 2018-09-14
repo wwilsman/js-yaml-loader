@@ -25,6 +25,12 @@ module: {
 }
 ```
 
+## Loader options
+
+### safe *(boolean) (default=true)*
+
+Use [`safeLoad`](https://github.com/nodeca/js-yaml#safeload-string---options-) instead of [`load`](https://github.com/nodeca/js-yaml#load-string---options-). Set `safe` to `false` to allow unsafe types to load, such as regular expressions, functions, and `undefined`.
+
 ### Difference from [yaml-loader](https://github.com/okonet/yaml-loader)
 
 [yaml-loader](https://github.com/okonet/yaml-loader) loads YAML files
