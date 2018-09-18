@@ -1,4 +1,4 @@
-const { inspect } = require('util');
+const uneval = require('un-eval');
 const { getOptions } = require('loader-utils');
 const yaml = require('js-yaml');
 
@@ -9,7 +9,7 @@ module.exports = function(source) {
     const options = getOptions(this);
     const safe = options.safe !== false;
     const res = safe ? yaml.safeLoad(source) : yaml.load(source);
-    return `module.exports = ${inspect(res, { depth: null })}`;
+    return `module.exports = ${uneval(res)};`;
   } catch (err) {
     this.emitError(err);
     return null;

@@ -38,7 +38,7 @@ as _JSON_ and is commonly used in conjuction with
 [json-loader](https://github.com/webpack-contrib/json-loader).
 
 In contrast, this loader loads YAML files as JavaScript objects using
-node's `util.inspect` function. This allows YAML value types otherwise
+the [un-eval](https://github.com/tiansh/un_eval.js) library. This allows YAML value types otherwise
 disallowed in JSON such as `Infinity`, `RegExp`, `Function`, etc.
 [See js-yaml's supported YAML types](https://github.com/nodeca/js-yaml#supported-yaml-types)
 
