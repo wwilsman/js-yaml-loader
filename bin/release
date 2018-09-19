@@ -1,0 +1,44 @@
+#! /usr/bin/env node
+
+const { spawn, spawnSync } = require('child_process');
+const { readFileSync } = require('fs');
+const { join } = require('path');
+
+/**
+ * Returns true if a package's version has not been published
+ *
+ * @param {String} pkg.name - package name
+ * @param {String} pkg.version - package version
+ * @returns {Boolean} true if the package version is not published
+ */
+function isUnpublished(pkg) {
+  let published = spawnSync('npm', ['view', pkg.name, 'versions']);
+
+  if (published.status === 0) {
+    let versions = JSON.parse(published.stdout.toString().replace(/'/g, '"'));
+    return !versions.includes(pkg.version);
+  } else {
+    return true;
+  }
+}
+
+/**
+ * Publish the current package to NPM if it was not already
+ *
+ * @param {Object} pkg - package.json contents
+ * @param {Array} args - array of arguments to pass to `npm publish`
+ */
+function publish(pkg, args) {
+  if (isUnpublished(pkg)) {
+    spawn('npm', ['publish', ...args], {
+      stdio: [null, 1, 2]
+    }).on('exit', process.exit);
+  }
+}
+
+// get the current package and publish it with any passed arguments
+const cwd = process.cwd();
+const pkg = JSON.parse(readFileSync(join(cwd, 'package.json')));
+const [,,...args] = process.argv;
+
+publish(pkg, args);

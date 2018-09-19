@@ -6,6 +6,9 @@
   "repository": "https://github.com/wwilsman/js-yaml-loader.git",
   "author": "Wil Wilsman <hello@wilwilsman.com>",
   "license": "MIT",
+  "scripts": {
+    "postpublish": "./bin/autotag"
+  },
   "keywords": [
     "yaml",
     "webpack",

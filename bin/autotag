@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+
+tagname=$(node -p "\`v\${require('./package.json').version}\`");
+git tag $tagname
