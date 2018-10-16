@@ -6,7 +6,7 @@ module.exports = function(source) {
   this.cacheable && this.cacheable();
 
   try {
-    const options = getOptions(this);
+    const options = getOptions(this) || {};
     const safe = options.safe !== false;
     const res = safe ? yaml.safeLoad(source) : yaml.load(source);
     return `module.exports = ${uneval(res)};`;
