@@ -1,6 +1,6 @@
 {
   "name": "js-yaml-loader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "YAML loader for webpack",
   "main": "index.js",
   "repository": "https://github.com/wwilsman/js-yaml-loader.git",
