@@ -8,7 +8,7 @@ module.exports = function(source) {
   try {
     const options = getOptions(this) || {};
     const safe = options.safe !== false;
-    const res = safe ? yaml.safeLoad(source) : yaml.load(source);
+    const res = safe ? yaml.safeLoadAll(source) : yaml.loadAll(source);
     return `module.exports = ${uneval(res)};`;
   } catch (err) {
     this.emitError(err);
