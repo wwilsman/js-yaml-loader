@@ -8,8 +8,15 @@ module.exports = function(source) {
   try {
     const options = getOptions(this) || {};
     const safe = options.safe !== false;
-    const res = safe ? yaml.safeLoad(source) : yaml.load(source);
-    return `module.exports = ${uneval(res)};`;
+
+    const res = safe
+      ? yaml.safeLoadAll(source)
+      : yaml.loadAll(source);
+
+    return [
+      `const doc = ${uneval(res)};`,
+      'module.exports = doc.length <= 1 ? doc[0] : doc;'
+    ].join('\n');
   } catch (err) {
     this.emitError(err);
     return null;
