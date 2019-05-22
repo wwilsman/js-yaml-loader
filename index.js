@@ -8,10 +8,11 @@ module.exports = function(source) {
   try {
     const options = getOptions(this) || {};
     const safe = options.safe !== false;
+    const iterator = options.iterator || function(){};
 
     const res = safe
-      ? yaml.safeLoadAll(source)
-      : yaml.loadAll(source);
+      ? yaml.safeLoadAll(source, iterator, options)
+      : yaml.loadAll(source, iterator, options);
 
     return [
       `const doc = ${uneval(res)};`,
