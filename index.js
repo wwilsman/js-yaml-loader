@@ -6,12 +6,15 @@ module.exports = function(source) {
   this.cacheable && this.cacheable();
 
   try {
-    const options = getOptions(this) || {};
-    const safe = options.safe !== false;
+    const {
+      safe,
+      iterator,
+      ...options
+    } = getOptions(this) || {};
 
-    const res = safe
-      ? yaml.safeLoadAll(source)
-      : yaml.loadAll(source);
+    const res = safe !== false
+      ? yaml.safeLoadAll(source, iterator, options)
+      : yaml.loadAll(source, iterator, options);
 
     return [
       `const doc = ${uneval(res)};`,
