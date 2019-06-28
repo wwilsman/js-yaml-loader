@@ -8,12 +8,16 @@
 
 ## Usage
 
-[Webpack documentation](https://webpack.js.org/concepts/loaders/#using-loaders)
+[Webpack documentation on using loaders.](https://webpack.js.org/concepts/loaders/#using-loaders)
+
+Using the loader inline:
 
 ``` javascript
 import doc from 'js-yaml-loader!./file.yml';
 // => returns a javascript object. see https://github.com/nodeca/js-yaml
 ```
+
+Or using the loader via Webpack configuration (recommended):
 
 ``` javascript
 // webpack.config.js
