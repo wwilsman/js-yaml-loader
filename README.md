@@ -23,7 +23,7 @@ Or using the loader via Webpack configuration (recommended):
 // webpack.config.js
 module: {
   rules: [{
-    test: /\.yaml$/,
+    test: /\.ya?ml$/,
     use: 'js-yaml-loader',
   }]
 }
