@@ -29,6 +29,13 @@ module: {
 }
 ```
 
+#### With [Create React App](https://github.com/facebook/create-react-app)
+
+CRA comes with [`file-loader`](https://github.com/webpack-contrib/file-loader)
+by default, so if you are adding `yaml-loader` to the ejected configuration
+you will also need to tell `file-loader` to ignore yaml files by including 
+`/\.ya?ml$/` in the list of excluded patterns.
+
 ## Loader options
 
 ### safe *(boolean) (default=true)*
